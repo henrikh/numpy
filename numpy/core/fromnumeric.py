@@ -456,6 +456,10 @@ def repeat(a, repeats, axis=None):
         Output array which has the same shape as `a`, except along
         the given axis.
 
+    Notes
+    -----
+    Repeating elements is equivalent to upsampling by an integer.
+
     See Also
     --------
     tile : Tile an array.
@@ -463,14 +467,23 @@ def repeat(a, repeats, axis=None):
 
     Examples
     --------
+    >>> np.repeat([1, 2, 3], 2)
+    array([1, 1, 2, 2, 3, 3])
+
     >>> np.repeat(3, 4)
     array([3, 3, 3, 3])
+
+    By default the output array is effectively flattened:
     >>> x = np.array([[1,2],[3,4]])
     >>> np.repeat(x, 2)
     array([1, 1, 2, 2, 3, 3, 4, 4])
+
+    Specify an axis only repeat along that axis:
     >>> np.repeat(x, 3, axis=1)
     array([[1, 1, 1, 2, 2, 2],
            [3, 3, 3, 4, 4, 4]])
+    
+    Repeat some elements a different number of time than others. In this case the first appears once and the second twice:
     >>> np.repeat(x, [1, 2], axis=0)
     array([[1, 2],
            [3, 4],
